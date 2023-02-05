@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price Calculator</title>
+</head>
+<body>
+  <input type="text" id="txt-price" placeholder="Enter the price of the item">
+  <input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+  <button id="btn-submit">Calculate</button>
+  <div id="output"></div>
+  <script>
+    // Store references to HTML elements in variables
+    var priceInput = document.getElementById('txt-price');
+    var quantityInput = document.getElementById('txt-quantity');
+    var submitBtn = document.getElementById('btn-submit');
+    var output = document.getElementById('output');
+
+    // Add event listener to the submit button to listen for click events
+    submitBtn.addEventListener('click', function () {
+      // Get the values of the price and quantity input fields
+      var price = priceInput.value;
+      var quanity = quantityInput.value;
+      
+      // Convert the values to numbers (if they are not numbers, they will become NaN)
+      price = +price;
+      quanity = +quanity;
+
+      // Check if either value is NaN (not a number)
+      if (Number.isNaN(price) || Number.isNaN(quanity)) {
+        // If either value is NaN, display error message
+        output.innerHTML = 'Invalid input';
+        return;
+      }
+      // Calculate the total price by multiplying the price by the quantity
+      var totalPrice = price * quanity;
+
+      // Round the total price to 2 decimal places
+      totalPrice = Math.round(totalPrice * 100) / 100;
+
+      // Display the result
+      output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+    });
+  </script>
+</body>
+</html>
